@@ -1,7 +1,7 @@
 # AWS Static Website with CloudWatch and SNS using Terraform
 
 <p align="center">
-<img src="images/Static_Website.png" alt="image" style="width:600px;"/>
+<img src="images/Static_Website.png" alt="image" style="width:500px;"/>
 </p>
 
 ## Introduction
@@ -13,16 +13,19 @@ Additionally CloudWatch is utilized for real-time monitoring of the AWS resource
 1. Storage and Distribution
     - **AWS S3**: Stores `index.html` and `error.html`, serving as scalable and durable storage for static website files.
     
-   - **AWS CloudFront**:Optimizes content delivery globally by caching content at edge locations, with S3 as the origin. Security is enhanced through Origin Access Control (OAC), restricting access to S3 objects via CloudFront.
+   - **AWS CloudFront**: Optimizes content delivery globally by caching content at edge locations, with S3 as the origin. Security is enhanced through Origin Access Control (OAC), restricting access to S3 objects via CloudFront.
 
 2. Monitoring and Alerts
     - **AWS CloudWatch**: Monitors key metrics like 4xxErrorRate and 5xxErrorRate for the CloudFront distribution. CloudWatch alarms are configured to trigger notifications when predefined thresholds are exceeded.
 
-   - **AWS SNS**:Sends alerts via email and other endpoints when thresholds are exceeded, ensuring stakeholders are promptly notified of issues for resolution.
+   - **AWS SNS**: Sends alerts via email and other endpoints when thresholds are exceeded, ensuring stakeholders are promptly notified of issues for resolution.
 
 <br/>
 
 ## Terraform Configuration Files
+<!-- (TOC:collapse=true&collapseText=Click to expand) -->
+<details>
+<summary>(click to expand)</summary>
 
 1. **s3_bucket.tf**: Configuration of an S3 bucket for a static website with versioning, website hosting, access controls, and CloudFront policy
     * aws_s3_bucket
@@ -54,25 +57,29 @@ Additionally CloudWatch is utilized for real-time monitoring of the AWS resource
     * s3_bucket_name
     * **cloudfront_distribution_url**: This output provides the publicly accessible URL for accessing your static website's content.
 
+</details>    
+
 <br>
 
 ## After Deployment
 
 Upon successful deployment of the static website on AWS using Terraform, users can expect the following:
 
-1. **Accessing the Website**: Navigate to the root URL to view the index.html page of the static website.
+1. **Accessing the Website**: Navigate to the root URL to view the `index.html` page of the static website.
 
-<img src="images/index_html.PNG" alt="image" style="width:600px;"/>
+<img src="images/index_html.png" alt="image" style="width:550px;"/>
 
-2. **Error Handling**: If an invalid URL is entered, users will be redirected to the error.html page, serving as a custom error page.
+2. **Error Handling**: If an invalid URL is entered, users will be redirected to the `error.html` page, serving as a custom error page.
 
-<img src="images/error_html.PNG" alt="image" style="width:600px;"/>
+<img src="images/error_html.png" alt="image" style="width:550px;"/>
 
 3. **Monitoring**: CloudWatch is configured to monitor metrics such as 4xxErrorRate for the CloudFront distribution. If HTTP 404 errors occur frequently, a CloudWatch alarm will be triggered.
 
-<img src="images/cloudwatch_alarm.PNG" alt="image" style="width:600px;"/>
+<img src="images/cloudwatch_alarm.png" alt="image" style="width:550px;"/>
 
-3. **Notification**: After confirming subscription to the topic, stakeholders will receive notifications via email whenever thresholds set in CloudWatch metrics, such as 4xx errors, are exceeded. This ensures prompt awareness and resolution of issues.
+4. **Notification**: After confirming subscription to the topic, stakeholders will receive notifications via email whenever thresholds set in CloudWatch metrics are exceeded. 
+
+<img src="images/notifications.png" alt="image" style="width:550px;"/>
 
 
   
