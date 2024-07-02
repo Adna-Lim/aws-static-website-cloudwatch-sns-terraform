@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform AWS Static Website Project with CloudWatch and SNS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: normal;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+        }
+        .container {
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 0;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        h1 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center; /* Center vertically with the emoji */
+        }
+        h1 span {
+            margin-left: 10px; /* Add some space between the text and emoji */
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #333;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            font-size: 0.9em;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Terraform AWS Static Website Project with ☁️</h1>
+    </header>
+    <div class="container">
+        <section id="about">
+            <p>This project demonstrates how to deploy a static website on AWS using Terraform, incorporating key components such as:</p>
+            <ul>
+                <li><strong>S3 Bucket:</strong> Hosts the static website files.</li>
+                <li><strong>CloudFront Distribution:</strong> Delivers content globally with caching.</li>
+                <li><strong>CloudWatch Monitoring:</strong> Monitors key metrics for AWS resources such as errors and request rates.</li>
+                <li><strong>SNS Notifications:</strong> Sends alerts for critical events based on CloudWatch alarms.</li>
+                <li><strong>Terraform Configuration:</strong> Sets up infrastructure as code for automation.</li>
+            </ul>
+            <p>Explore our project to learn about the setup process, configuration files, and how you can replicate or extend this setup for your own projects.</p>
+        </section>
+    
+        
+        <section id="terraform">
+            <h2>Terraform Configuration</h2>
+            <p>All infrastructure is managed as code using Terraform:</p>
+            <ul>
+                <li>Define S3 bucket and CloudFront distribution configurations.</li>
+                <li>Establish IAM roles and policies for CloudWatch integration.</li>
+                <li>Automate deployment and updates to ensure consistency and scalability.</li>
+            </ul>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Terraform AWS Static Website Project with CloudWatch and SNS. All rights reserved.</p>
+    </footer>
+</body>
+</html>
