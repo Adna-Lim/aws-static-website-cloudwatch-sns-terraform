@@ -1,7 +1,7 @@
 # AWS Static Website with CloudWatch and SNS using Terraform
 
 <p align="center">
-<img src="images/Static_Website.png" alt="image" style="width:500px;"/>
+<img src="images/Static_Website_v2.png" alt="image" style="width:500px;"/>
 </p>
 
 ## Introduction
@@ -14,6 +14,7 @@ Additionally CloudWatch is utilized for real-time monitoring of the AWS resource
     - **AWS S3**: Stores `index.html` and `error.html`, serving as scalable and durable storage for static website files.
     
    - **AWS CloudFront**: Optimizes content delivery globally by caching content at edge locations, with S3 as the origin. Security is enhanced through Origin Access Control (OAC), restricting access to S3 objects via CloudFront.
+        - In the event that the primary origin becomes unavailable, CloudFront automatically switches to a secondary origin to serve the content ensuring that content is always available to users.
 
 2. Monitoring and Alerts
     - **AWS CloudWatch**: Monitors key metrics like 4xxErrorRate and 5xxErrorRate for the CloudFront distribution. CloudWatch alarms are configured to trigger notifications when predefined thresholds are exceeded.
@@ -27,16 +28,9 @@ Additionally CloudWatch is utilized for real-time monitoring of the AWS resource
 <details>
 <summary>(click to expand)</summary>
 
-1. **s3_bucket.tf**: Configuration of an S3 bucket for a static website with versioning, website hosting, access controls, and CloudFront policy
-    * aws_s3_bucket
-    * aws_s3_object (index)
-    * aws_s3_object (error)
-    * aws_s3_bucket_ownership_controls
-    * aws_s3_bucket_public_access_block
-    * aws_s3_bucket_versioning
-    * aws_s3_bucket_website_configuration
-    * aws_s3_bucket_policy
-    * data.aws_iam_policy_document
+1. **s3_bucket.tf**: Instantiates the S3 bucket modules for the primary and secondary buckets
+    * module "primary_s3_bucket"
+    * module "secondary_s3_bucket"
 
 2. **cloudfront_distribution.tf**: Sets up an OAC and CloudFront distribution for delivering a static website hosted on AWS S3
     * aws_cloudfront_origin_access_control
@@ -52,8 +46,19 @@ Additionally CloudWatch is utilized for real-time monitoring of the AWS resource
     * aws_sns_topic 
     * aws_sns_topic_subscription 
 
+5. **modules/s3_bucket/main.tf**: Instantiates the S3 bucket modules for the primary and secondary buckets
+    * aws_s3_bucket
+    * aws_s3_object (index)
+    * aws_s3_object (error)
+    * aws_s3_bucket_ownership_controls
+    * aws_s3_bucket_public_access_block
+    * aws_s3_bucket_versioning
+    * aws_s3_bucket_website_configuration
+    * aws_s3_bucket_policy
+    * data.aws_iam_policy_document
 
-5. **outputs.tf**: Define the outputs you want to display after Terraform applies changes
+
+6. **outputs.tf**: Define the outputs you want to display after Terraform applies changes
     * s3_bucket_name
     * **cloudfront_distribution_url**: This output provides the publicly accessible URL for accessing your static website's content.
 
@@ -77,9 +82,10 @@ Upon successful deployment of the static website on AWS using Terraform, users c
 
 <img src="images/cloudwatch_alarm.png" alt="image" style="width:550px;"/>
 
-4. **Notification**: After confirming subscription to the topic, stakeholders will receive notifications via email whenever thresholds set in CloudWatch metrics are exceeded. 
+4. **Notifications**: After confirming subscription to the topic, stakeholders will receive notifications via email whenever thresholds set in CloudWatch metrics are exceeded. 
 
 <img src="images/notifications.png" alt="image" style="width:550px;"/>
 
+5. **Failover Strategy**: The CloudFront distribution will automatically failover from the primary S3 bucket to the secondary S3 bucket in the event of 500 errors, ensuring continuous content delivery and high availability of static website content.
 
   

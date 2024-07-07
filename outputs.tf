@@ -1,5 +1,5 @@
 output "s3_bucket_name" {
-  value = aws_s3_bucket.static_site.bucket
+  value = module.primary_s3_bucket.bucket_name
 }
 
 output "cloudfront_distribution_url" {
