@@ -78,11 +78,11 @@ Upon successful deployment of the static website on AWS using Terraform, users c
 
 <img src="images/error_html.png" alt="image" style="width:550px;"/>
 
-3. **Monitoring**: CloudWatch is configured to monitor metrics such as 4xxErrorRate for the CloudFront distribution. If HTTP 404 errors occur frequently, a CloudWatch alarm will be triggered.
+3. **Monitoring**: If 4xx errors occur frequently, a CloudWatch alarm will be triggered.
 
 <img src="images/cloudwatch_alarm.png" alt="image" style="width:550px;"/>
 
-4. **Notifications**: After confirming subscription to the topic, stakeholders will receive notifications via email whenever thresholds set in CloudWatch metrics are exceeded. 
+4. **Notifications**: After confirming subscription to the topic, stakeholders will receive notifications via email whenever CloudWatch thresholds are exceeded. 
 
 <img src="images/notifications.png" alt="image" style="width:550px;"/>
 
