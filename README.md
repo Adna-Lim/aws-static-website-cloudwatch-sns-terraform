@@ -4,7 +4,7 @@
 <img src="images/Static_Website_v2.png" alt="image" style="width:500px;"/>
 </p>
 
-## Overview
+## Introduction
 
 In this project, we deploy a static website on AWS using Terraform, leveraging S3 for scalable, durable storage and content delivery through CloudFront. 
 
